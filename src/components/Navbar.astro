@@ -1,14 +1,23 @@
 ---
 ---
-<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background: transparent;">
-  <div class="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="/" class="flex flex-col gap-0.5">
-      <span class="font-display text-ivory text-xl font-light tracking-widest uppercase">Strategio</span>
-      <span class="section-label" style="font-size:0.55rem; color:#8a6f2e; letter-spacing:0.25em;">Consultoría Estratégica</span>
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:transparent;">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3 group">
+      <svg width="36" height="36" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg" fill="white" class="transition-transform duration-300 group-hover:scale-105">
+        <polygon points="5,5 29,5 5,29"/>
+        <rect x="33" y="5" width="24" height="24"/>
+        <polygon points="61,5 85,5 85,29"/>
+        <polygon points="5,33 5,57 29,45"/>
+        <polygon points="85,33 85,57 61,45"/>
+        <polygon points="5,61 5,85 29,85"/>
+        <rect x="33" y="61" width="24" height="24"/>
+        <polygon points="61,85 85,85 85,61"/>
+      </svg>
+      <span style="font-family:'Archivo',sans-serif; font-weight:900; font-size:1.2rem; color:#F8F8FF; letter-spacing:-0.01em;">
+        Strategi<span style="color:#4D0FC1;">o</span>
+      </span>
     </a>
 
-    <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-10">
       <a href="/#nosotros" class="nav-link">Nosotros</a>
       <a href="/#servicios" class="nav-link">Servicios</a>
@@ -16,43 +25,39 @@
       <a href="/blog" class="nav-link">Insights</a>
     </nav>
 
-    <!-- CTA -->
-    <a href="#contacto" class="hidden md:inline-block btn-primary text-xs">
+    <a href="/#contacto" class="hidden md:inline-flex btn-primary text-xs">
       Conversemos
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
     </a>
 
-    <!-- Mobile menu button -->
-    <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menú">
-      <span class="block w-6 h-px bg-ivory transition-all duration-300"></span>
-      <span class="block w-4 h-px bg-gold transition-all duration-300"></span>
-      <span class="block w-6 h-px bg-ivory transition-all duration-300"></span>
+    <button id="menuBtn" class="md:hidden p-2 flex flex-col gap-1.5" aria-label="Menú">
+      <span class="block w-6 h-0.5 transition-all duration-300" style="background:#F8F8FF;"></span>
+      <span class="block w-4 h-0.5 transition-all duration-300" style="background:#4D0FC1;"></span>
+      <span class="block w-6 h-0.5 transition-all duration-300" style="background:#F8F8FF;"></span>
     </button>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobileMenu" class="hidden md:hidden bg-charcoal border-t border-smoke px-8 py-6 flex flex-col gap-6">
-    <a href="/#nosotros" class="nav-link text-ivory">Nosotros</a>
-    <a href="/#servicios" class="nav-link text-ivory">Servicios</a>
-    <a href="/#equipo" class="nav-link text-ivory">Equipo</a>
-    <a href="/blog" class="nav-link text-ivory">Insights</a>
+  <div id="mobileMenu" class="hidden md:hidden px-6 py-6 flex flex-col gap-6" style="background:#1E1B26; border-top:1px solid #2A2740;">
+    <a href="/#nosotros" class="nav-link">Nosotros</a>
+    <a href="/#servicios" class="nav-link">Servicios</a>
+    <a href="/#equipo" class="nav-link">Equipo</a>
+    <a href="/blog" class="nav-link">Insights</a>
     <a href="/#contacto" class="btn-primary self-start">Conversemos →</a>
   </div>
 </header>
 
 <script>
-  // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
-      navbar.style.background = 'rgba(10,10,10,0.96)';
+      navbar.style.background = 'rgba(10,10,25,0.97)';
       navbar.style.backdropFilter = 'blur(12px)';
-      navbar.style.borderBottom = '1px solid #2e2e2e';
+      navbar.style.borderBottom = '1px solid #2A2740';
     } else {
       navbar.style.background = 'transparent';
       navbar.style.backdropFilter = 'none';
@@ -60,12 +65,6 @@
     }
   });
 
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Close mobile menu on link click
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-  });
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 </script>

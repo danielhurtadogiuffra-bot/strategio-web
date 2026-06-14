@@ -20,28 +20,28 @@ function formatDate(date: Date) {
   <Navbar />
 
   <!-- Header -->
-  <section class="pt-40 pb-20 bg-obsidian border-b" style="border-color:#2e2e2e;">
+  <section class="pt-40 pb-20 bg-navy" style="border-bottom:1px solid #2A2740;">
     <div class="max-w-7xl mx-auto px-8">
-      <p class="section-label animate-fade-in-up">Publicaciones</p>
-      <h1 class="hero-title mt-4 animate-fade-in-up delay-100" style="font-size:clamp(2.5rem,5vw,5rem);">
+      <p class="section-tag anim-up">Publicaciones</p>
+      <h1 class="hero-title mt-4 anim-up d-100" style="font-size:clamp(2.5rem,5vw,5rem);">
         Insights<br/>
-        <em>Strategio</em>
+        <span style="color:#4D0FC1;">Strategio</span>
       </h1>
-      <p class="text-base leading-relaxed mt-6 max-w-lg animate-fade-in-up delay-200" style="color:#a8a09b; font-weight:300;">
+      <p class="text-base leading-relaxed mt-6 max-w-lg anim-up d-200" style="color:#9B97AA; font-weight:300;">
         Perspectiva de alto nivel sobre finanzas, estrategia y gestión empresarial. Sin jerga innecesaria, con rigor analítico.
       </p>
     </div>
   </section>
 
   <!-- Filter tabs -->
-  <section class="bg-charcoal border-b sticky top-16 z-40" style="border-color:#2e2e2e;">
+  <section class="sticky top-16 z-40" style="background:#1E1B26; border-bottom:1px solid #2A2740;">
     <div class="max-w-7xl mx-auto px-8">
       <div class="flex gap-0 overflow-x-auto" id="filterTabs">
         {categories.map((cat, i) => (
           <button
             data-cat={cat}
-            class={`filter-btn px-6 py-4 text-xs font-medium tracking-widest uppercase whitespace-nowrap transition-colors border-b-2 ${i === 0 ? 'border-gold text-gold' : 'border-transparent'}`}
-            style={i === 0 ? 'color:#c9a84c;' : 'color:#a8a09b;'}
+            class="filter-btn px-6 py-4 text-xs font-bold tracking-widest uppercase whitespace-nowrap transition-colors border-b-2"
+            style={i === 0 ? 'color:#4D0FC1; border-color:#4D0FC1;' : 'color:#9B97AA; border-color:transparent;'}
           >
             {cat}
           </button>
@@ -51,66 +51,66 @@ function formatDate(date: Date) {
   </section>
 
   <!-- Posts grid -->
-  <section class="py-20 bg-obsidian min-h-screen">
+  <section class="py-20 bg-navy min-h-screen">
     <div class="max-w-7xl mx-auto px-8">
 
       <!-- Featured posts -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-smoke mb-px" id="featuredGrid">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-px mb-px" id="featuredGrid" style="background:#2A2740;">
         {posts.filter(p => p.data.featured).map(post => (
           <article
-            class="bg-charcoal p-10 hover-lift group cursor-pointer post-card"
+            class="p-10 hover-lift group cursor-pointer post-card"
             data-category={post.data.category}
             onclick={`window.location='/blog/${post.id}'`}
+            style="background:#1E1B26;"
           >
             <div class="flex items-center justify-between mb-6">
-              <span class="section-label">{post.data.category}</span>
-              <span class="text-xs" style="color:#8a6f2e;">{post.data.readTime} min lectura</span>
+              <span class="section-tag">{post.data.category}</span>
+              <span class="text-xs" style="color:#9B97AA;">{post.data.readTime} min lectura</span>
             </div>
-            <h2 class="font-display text-2xl text-ivory font-light leading-tight mb-4 group-hover:text-gold transition-colors" style="font-family:'Cormorant Garamond',serif;">
+            <h2 class="text-2xl font-black leading-tight mb-4 transition-colors group-hover:text-purple" style="font-family:'Archivo',sans-serif; color:#F8F8FF;">
               {post.data.title}
             </h2>
-            <p class="text-sm leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">{post.data.description}</p>
+            <p class="text-sm leading-relaxed mb-6" style="color:#9B97AA; font-weight:300;">{post.data.description}</p>
             <div class="flex items-center justify-between">
-              <span class="text-xs" style="color:#8a6f2e;">{formatDate(post.data.date)}</span>
-              <span class="text-gold text-sm group-hover:translate-x-1 transition-transform inline-block">→</span>
+              <span class="text-xs" style="color:#9B97AA;">{formatDate(post.data.date)}</span>
+              <span class="text-sm font-black transition-transform group-hover:translate-x-1 inline-block" style="color:#4D0FC1;">→</span>
             </div>
           </article>
         ))}
       </div>
 
       <!-- Rest of posts -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-smoke" id="postsGrid">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px" id="postsGrid" style="background:#2A2740;">
         {posts.filter(p => !p.data.featured).map(post => (
           <article
-            class="bg-charcoal p-8 hover-lift group cursor-pointer post-card"
+            class="p-8 hover-lift group cursor-pointer post-card"
             data-category={post.data.category}
             onclick={`window.location='/blog/${post.id}'`}
+            style="background:#0A0A19;"
           >
             <div class="flex items-center justify-between mb-4">
-              <span class="section-label" style="font-size:0.6rem;">{post.data.category}</span>
-              <span class="text-xs" style="color:#8a6f2e;">{post.data.readTime} min</span>
+              <span class="section-tag" style="font-size:0.6rem;">{post.data.category}</span>
+              <span class="text-xs" style="color:#9B97AA;">{post.data.readTime} min</span>
             </div>
-            <h2 class="font-display text-lg text-ivory font-light leading-tight mb-3 group-hover:text-gold transition-colors" style="font-family:'Cormorant Garamond',serif;">
+            <h2 class="text-lg font-black leading-tight mb-3 transition-colors group-hover:text-purple" style="font-family:'Archivo',sans-serif; color:#F8F8FF;">
               {post.data.title}
             </h2>
-            <p class="text-xs leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">{post.data.description}</p>
+            <p class="text-xs leading-relaxed mb-6" style="color:#9B97AA; font-weight:300;">{post.data.description}</p>
             <div class="flex items-center justify-between">
-              <span class="text-xs" style="color:#8a6f2e;">{formatDate(post.data.date)}</span>
-              <span class="text-gold text-sm group-hover:translate-x-1 transition-transform inline-block">→</span>
+              <span class="text-xs" style="color:#9B97AA;">{formatDate(post.data.date)}</span>
+              <span class="text-sm font-black transition-transform group-hover:translate-x-1 inline-block" style="color:#4D0FC1;">→</span>
             </div>
           </article>
         ))}
       </div>
 
-      <!-- Empty state -->
       <div id="emptyState" class="hidden py-20 text-center">
-        <p class="text-mist text-sm" style="color:#a8a09b;">No hay artículos en esta categoría aún.</p>
+        <p class="text-sm" style="color:#9B97AA;">No hay artículos en esta categoría aún.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- Newsletter -->
   <div class="max-w-7xl mx-auto px-8 py-20">
     <NewsletterCTA variant="full" />
   </div>
@@ -126,27 +126,19 @@ function formatDate(date: Date) {
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const cat = (btn as HTMLElement).dataset.cat;
-
       buttons.forEach(b => {
-        (b as HTMLElement).style.color = '#a8a09b';
-        b.classList.remove('border-gold');
-        b.classList.add('border-transparent');
+        (b as HTMLElement).style.color = '#9B97AA';
+        (b as HTMLElement).style.borderColor = 'transparent';
       });
-      (btn as HTMLElement).style.color = '#c9a84c';
-      btn.classList.add('border-gold');
-      btn.classList.remove('border-transparent');
+      (btn as HTMLElement).style.color = '#4D0FC1';
+      (btn as HTMLElement).style.borderColor = '#4D0FC1';
 
       let visible = 0;
       cards.forEach(card => {
         const el = card as HTMLElement;
-        if (cat === 'Todos' || el.dataset.category === cat) {
-          el.style.display = '';
-          visible++;
-        } else {
-          el.style.display = 'none';
-        }
+        if (cat === 'Todos' || el.dataset.category === cat) { el.style.display = ''; visible++; }
+        else el.style.display = 'none';
       });
-
       emptyState.classList.toggle('hidden', visible > 0);
     });
   });
