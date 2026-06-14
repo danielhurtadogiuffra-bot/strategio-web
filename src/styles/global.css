@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0a0a0a;
+  --color-charcoal: #141414;
+  --color-slate: #1e1e1e;
+  --color-gold: #c9a84c;
+  --color-gold-light: #e8c97a;
+  --color-gold-dim: #8a6f2e;
+  --color-ivory: #f5f0e8;
+  --color-mist: #a8a09b;
+  --color-smoke: #2e2e2e;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-obsidian);
+    color: var(--color-ivory);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-obsidian);
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-charcoal); }
+  ::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 2px; }
+}
+
+@layer utilities {
+  .text-gold       { color: var(--color-gold); }
+  .text-gold-light { color: var(--color-gold-light); }
+  .text-ivory      { color: var(--color-ivory); }
+  .text-mist       { color: var(--color-mist); }
+  .bg-obsidian     { background-color: var(--color-obsidian); }
+  .bg-charcoal     { background-color: var(--color-charcoal); }
+  .bg-slate        { background-color: var(--color-slate); }
+  .bg-smoke        { background-color: var(--color-smoke); }
+  .border-gold     { border-color: var(--color-gold); }
+  .border-gold-dim { border-color: var(--color-gold-dim); }
+  .font-display    { font-family: var(--font-display); }
+  .font-body       { font-family: var(--font-body); }
+}

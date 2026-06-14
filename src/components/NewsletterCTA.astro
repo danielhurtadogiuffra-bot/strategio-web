@@ -1,0 +1,82 @@
+---
+interface Props {
+  variant?: 'full' | 'inline';
+}
+const { variant = 'full' } = Astro.props;
+---
+
+{variant === 'full' ? (
+  <div class="bg-charcoal border border-smoke py-16 px-8 md:px-16 text-center relative overflow-hidden" style="border-color:#2e2e2e;">
+    <div class="absolute inset-0 opacity-[0.03]" style="
+      background-image: linear-gradient(#c9a84c 1px, transparent 1px),
+                        linear-gradient(90deg, #c9a84c 1px, transparent 1px);
+      background-size: 60px 60px;
+    "></div>
+    <div class="relative max-w-xl mx-auto">
+      <p class="section-label mb-4">Insights Strategio</p>
+      <h3 class="font-display text-3xl text-ivory font-light mb-4" style="font-family:'Cormorant Garamond',serif;">
+        Análisis estratégico directo<br/>
+        <span class="text-gold italic">a su bandeja de entrada.</span>
+      </h3>
+      <p class="text-sm leading-relaxed mb-8" style="color:#a8a09b; font-weight:300;">
+        Un artículo mensual. Sin spam. Solo perspectiva de alto nivel sobre finanzas, estrategia y gestión empresarial en el contexto peruano.
+      </p>
+      <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="correo@empresa.com"
+          class="flex-1 border px-4 py-3 text-sm focus:outline-none"
+          style="border-color:#2e2e2e; color:#f5f0e8; background:#0a0a0a;"
+        />
+        <button type="submit" class="btn-primary whitespace-nowrap">
+          Suscribirme
+        </button>
+      </form>
+      <p id="nlMsg" class="text-xs mt-4 hidden" style="color:#c9a84c;"></p>
+      <p class="text-xs mt-3" style="color:#8a6f2e;">Sin spam · Baja cuando quieras</p>
+    </div>
+  </div>
+) : (
+  <div class="border-l-2 border-gold pl-6 py-2 my-10">
+    <p class="text-sm font-medium text-ivory mb-1">¿Le resultó útil este análisis?</p>
+    <p class="text-xs mb-4" style="color:#a8a09b;">Reciba un artículo mensual como este directamente en su correo.</p>
+    <form id="newsletterFormInline" class="flex gap-3">
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="correo@empresa.com"
+        class="flex-1 border px-3 py-2 text-xs focus:outline-none"
+        style="border-color:#2e2e2e; color:#f5f0e8; background:#0a0a0a; max-width:240px;"
+      />
+      <button type="submit" class="btn-primary text-xs px-4 py-2">
+        Suscribir
+      </button>
+    </form>
+    <p id="nlMsgInline" class="text-xs mt-2 hidden" style="color:#c9a84c;"></p>
+  </div>
+)}
+
+<script>
+  ['newsletterForm', 'newsletterFormInline'].forEach(id => {
+    const form = document.getElementById(id) as HTMLFormElement;
+    if (!form) return;
+    const msgId = id === 'newsletterForm' ? 'nlMsg' : 'nlMsgInline';
+    const msg = document.getElementById(msgId);
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button') as HTMLButtonElement;
+      btn.disabled = true;
+      btn.textContent = '...';
+      setTimeout(() => {
+        msg.textContent = '✓ Suscripción confirmada. Bienvenido.';
+        msg.classList.remove('hidden');
+        form.reset();
+        btn.disabled = false;
+        btn.textContent = id === 'newsletterForm' ? 'Suscribirme' : 'Suscribir';
+      }, 900);
+    });
+  });
+</script>

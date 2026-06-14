@@ -1,0 +1,637 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import NewsletterCTA from '../components/NewsletterCTA.astro';
+
+const latestPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('es-PE', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<Layout>
+  <Navbar />
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex items-center overflow-hidden bg-obsidian">
+    <!-- Background grid -->
+    <div class="absolute inset-0 opacity-5" style="
+      background-image: linear-gradient(#c9a84c 1px, transparent 1px),
+                        linear-gradient(90deg, #c9a84c 1px, transparent 1px);
+      background-size: 80px 80px;
+    "></div>
+    <div class="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gold-dim to-transparent opacity-40"></div>
+    <span class="absolute right-12 bottom-24 font-display text-[18rem] font-thin opacity-[0.03] select-none leading-none text-ivory" style="font-family:'Cormorant Garamond',serif;">S</span>
+
+    <div class="relative max-w-7xl mx-auto px-8 pt-40 pb-32 w-full">
+      <div class="max-w-4xl">
+        <p class="section-label animate-fade-in-up">Consultoría Estratégica · Lima, Perú</p>
+
+        <h1 class="hero-title mt-6 animate-fade-in-up delay-100">
+          Decisiones que<br/>
+          <em>transforman</em><br/>
+          organizaciones.
+        </h1>
+
+        <span class="gold-divider animate-line delay-300"></span>
+
+        <p class="text-base md:text-lg leading-relaxed max-w-xl animate-fade-in-up delay-300" style="color:#a8a09b; font-weight:300;">
+          Integramos análisis financiero de alto nivel, optimización de procesos y visión ejecutiva para construir estructuras sólidas, éticas y escalables.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-10 animate-fade-in-up delay-500">
+          <a href="#contacto" class="btn-primary">
+            Agendar una consulta
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#servicios" class="btn-outline">Conocer servicios</a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-smoke mt-20 animate-fade-in delay-700">
+        <div class="bg-charcoal px-8 py-8">
+          <p class="stat-number">11+</p>
+          <p class="text-xs mt-2" style="color:#a8a09b; letter-spacing:0.1em; text-transform:uppercase;">Años en B2B</p>
+        </div>
+        <div class="bg-charcoal px-8 py-8">
+          <p class="stat-number">50+</p>
+          <p class="text-xs mt-2" style="color:#a8a09b; letter-spacing:0.1em; text-transform:uppercase;">Empresas asesoradas</p>
+        </div>
+        <div class="bg-charcoal px-8 py-8">
+          <p class="stat-number">80+</p>
+          <p class="text-xs mt-2" style="color:#a8a09b; letter-spacing:0.1em; text-transform:uppercase;">Proyectos ejecutados</p>
+        </div>
+        <div class="bg-charcoal px-8 py-8">
+          <p class="stat-number">$1B+</p>
+          <p class="text-xs mt-2" style="color:#a8a09b; letter-spacing:0.1em; text-transform:uppercase;">En ingresos asesorados</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="py-32 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+        <div class="relative">
+          <div class="bg-slate border border-smoke p-12 relative">
+            <span class="gold-divider"></span>
+            <p class="font-display text-2xl text-ivory font-light leading-relaxed italic" style="font-family:'Cormorant Garamond',serif;">
+              "Las organizaciones que sobreviven no son las más grandes, sino las que toman mejores decisiones."
+            </p>
+            <div class="mt-8 flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-smoke border flex items-center justify-center" style="border-color:#8a6f2e;">
+                <span class="text-gold text-sm" style="font-family:'Cormorant Garamond',serif;">S</span>
+              </div>
+              <div>
+                <p class="text-ivory text-sm font-medium">Equipo Strategio</p>
+                <p class="text-xs" style="color:#a8a09b;">Dirección Estratégica</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 border opacity-30" style="border-color:#8a6f2e;"></div>
+          <div class="absolute -top-4 -left-4 w-12 h-12 border opacity-20" style="border-color:#8a6f2e;"></div>
+        </div>
+
+        <div>
+          <p class="section-label">Quiénes somos</p>
+          <h2 class="section-title mt-4">
+            Más de una década<br/>construyendo<br/>
+            <span class="text-gold">visión corporativa.</span>
+          </h2>
+          <span class="gold-divider"></span>
+          <p class="text-sm leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">
+            Strategio nació con una convicción: que la consultoría de primer nivel no debería ser exclusiva de las corporaciones globales. Las empresas medianas y en crecimiento merecen el mismo rigor analítico y la misma profundidad estratégica.
+          </p>
+          <p class="text-sm leading-relaxed mb-10" style="color:#a8a09b; font-weight:300;">
+            Operamos desde Lima con metodología de clase mundial, integrando perspectiva local, expertise financiero y visión ejecutiva en cada encargo que aceptamos.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6">
+            {[
+              ['Ética profesional', 'Integridad en cada análisis'],
+              ['Rigor analítico', 'Datos sobre intuición'],
+              ['Visión ejecutiva', 'Más allá de los números'],
+              ['Resultados medibles', 'Impacto verificable'],
+            ].map(([title, sub]) => (
+              <div class="flex gap-3">
+                <div class="w-5 h-5 shrink-0 mt-0.5 flex items-center justify-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                </div>
+                <div>
+                  <p class="text-ivory text-sm font-medium">{title}</p>
+                  <p class="text-xs mt-1" style="color:#a8a09b;">{sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="py-32 bg-obsidian">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div>
+          <p class="section-label">Lo que hacemos</p>
+          <h2 class="section-title mt-4">
+            Tres disciplinas,<br/>
+            <span class="text-gold">un propósito.</span>
+          </h2>
+        </div>
+        <p class="text-sm leading-relaxed max-w-sm" style="color:#a8a09b; font-weight:300;">
+          Cada servicio está diseñado para atacar los problemas más complejos de las organizaciones en crecimiento.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-smoke">
+
+        <div class="card-service hover-lift bg-charcoal relative">
+          <span class="number-accent">01</span>
+          <div class="w-10 h-10 border flex items-center justify-center mb-6" style="border-color:#8a6f2e;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <p class="section-label mb-3">Finanzas Corporativas</p>
+          <h3 class="font-display text-xl text-ivory font-light leading-tight mb-4" style="font-family:'Cormorant Garamond',serif;">Visión financiera de alto impacto</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">
+            Transformamos los registros contables en herramientas estratégicas de decisión. Valorización de empresas, estructuración de deuda, análisis de rentabilidad y gestión del capital de trabajo.
+          </p>
+          <ul class="flex flex-col gap-2">
+            {['Valorización y due diligence', 'Planeación financiera integral', 'Reestructuración de pasivos', 'Análisis de inversiones y M&A'].map(item => (
+              <li class="flex gap-2 items-start text-xs" style="color:#a8a09b;"><span class="text-gold mt-0.5">→</span> {item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card-service hover-lift bg-charcoal relative">
+          <span class="number-accent">02</span>
+          <div class="w-10 h-10 border flex items-center justify-center mb-6" style="border-color:#8a6f2e;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <p class="section-label mb-3">Planeamiento Estratégico</p>
+          <h3 class="font-display text-xl text-ivory font-light leading-tight mb-4" style="font-family:'Cormorant Garamond',serif;">Dirección con propósito y precisión</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">
+            Diseñamos la hoja de ruta que convierte la visión en acción ejecutable. Desde el diagnóstico inicial hasta la implementación de OKRs y tableros de control gerencial.
+          </p>
+          <ul class="flex flex-col gap-2">
+            {['Diagnóstico organizacional', 'Diseño de KPIs y OKRs', 'Plan estratégico 3-5 años', 'Balanced scorecard'].map(item => (
+              <li class="flex gap-2 items-start text-xs" style="color:#a8a09b;"><span class="text-gold mt-0.5">→</span> {item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card-service hover-lift bg-charcoal relative">
+          <span class="number-accent">03</span>
+          <div class="w-10 h-10 border flex items-center justify-center mb-6" style="border-color:#8a6f2e;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <p class="section-label mb-3">Modelos de Gestión</p>
+          <h3 class="font-display text-xl text-ivory font-light leading-tight mb-4" style="font-family:'Cormorant Garamond',serif;">Estructura para el crecimiento sostenido</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">
+            Diseñamos modelos operativos adaptados a la complejidad de cada industria. Procesos, estructura organizacional y sistemas de control para garantizar crecimiento ordenado.
+          </p>
+          <ul class="flex flex-col gap-2">
+            {['Rediseño de procesos core', 'Estructura organizacional', 'Sistemas de control interno', 'Gobierno corporativo'].map(item => (
+              <li class="flex gap-2 items-start text-xs" style="color:#a8a09b;"><span class="text-gold mt-0.5">→</span> {item}</li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- METODOLOGÍA -->
+  <section id="metodologia" class="py-32 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <p class="section-label">Cómo trabajamos</p>
+        <h2 class="section-title mt-4">
+          Un proceso diseñado para<br/>
+          <span class="text-gold">resultados reales.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-smoke">
+        {[
+          { num: '01', title: 'Diagnóstico', desc: 'Análisis profundo de la organización: finanzas, procesos, estructura y cultura. Sin supuestos.' },
+          { num: '02', title: 'Diseño', desc: 'Construimos la solución a medida, con benchmarks del sector y mejores prácticas internacionales.' },
+          { num: '03', title: 'Implementación', desc: 'Acompañamiento activo durante la ejecución. No entregamos documentos, entregamos cambios.' },
+          { num: '04', title: 'Seguimiento', desc: 'Medición continua de resultados. Ajustamos la estrategia con base en datos, no en opiniones.' },
+        ].map(step => (
+          <div class="bg-obsidian p-10 relative hover-lift">
+            <p class="font-display font-thin text-6xl absolute top-6 right-6 opacity-10 text-ivory" style="font-family:'Cormorant Garamond',serif;">{step.num}</p>
+            <p class="section-label mb-3">{step.num}</p>
+            <h3 class="font-display text-xl text-ivory font-light mb-3" style="font-family:'Cormorant Garamond',serif;">{step.title}</h3>
+            <p class="text-sm leading-relaxed" style="color:#a8a09b; font-weight:300;">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- RESULTADOS / TESTIMONIALES -->
+  <section id="resultados" class="py-32 bg-obsidian">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+
+        <div>
+          <p class="section-label">Lo que dicen nuestros clientes</p>
+          <h2 class="section-title mt-4">
+            El impacto habla<br/>
+            <span class="text-gold">por sí solo.</span>
+          </h2>
+          <span class="gold-divider"></span>
+          <p class="text-sm leading-relaxed max-w-sm" style="color:#a8a09b; font-weight:300;">
+            Trabajamos con líderes empresariales que entienden que la consultoría de calidad no es un gasto, es la inversión de mayor retorno.
+          </p>
+          <div class="mt-10 grid grid-cols-2 gap-6">
+            <div class="border p-6" style="border-color:#2e2e2e;">
+              <p class="stat-number text-3xl">40%</p>
+              <p class="text-xs mt-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">Reducción promedio de costos operativos</p>
+            </div>
+            <div class="border p-6" style="border-color:#2e2e2e;">
+              <p class="stat-number text-3xl">2.8x</p>
+              <p class="text-xs mt-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">ROI promedio en proyectos estratégicos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          {[
+            { initial: 'C', name: 'Carlos M.', role: 'CEO · Empresa industrial, Lima', quote: 'Strategio nos ayudó a identificar ineficiencias que teníamos invisibles en el P&L. En seis meses redujimos costos en un 38% sin comprometer la operación. Una visión que no teníamos internamente.' },
+            { initial: 'A', name: 'Ana L.', role: 'Directora General · Grupo retail, Perú', quote: 'Necesitábamos ordenar la casa antes de escalar. Strategio diseñó el modelo de gestión que nos faltaba: gobierno, procesos y finanzas alineados. Hoy somos una empresa diferente.' },
+            { initial: 'R', name: 'Roberto V.', role: 'Gerente de Inversiones · Family office', quote: 'El due diligence que realizaron fue determinante en la decisión de inversión. Rigor, profundidad y recomendaciones accionables. Exactamente lo que necesitábamos para cerrar la operación.' },
+          ].map(t => (
+            <div class="testimonial-card">
+              <p class="text-gold text-2xl font-display mb-3" style="font-family:'Cormorant Garamond',serif;">"</p>
+              <p class="text-sm leading-relaxed text-ivory mb-6" style="font-weight:300;">{t.quote}</p>
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-smoke border flex items-center justify-center" style="border-color:#8a6f2e;">
+                  <span class="text-gold text-xs" style="font-family:'Cormorant Garamond',serif;">{t.initial}</span>
+                </div>
+                <div>
+                  <p class="text-ivory text-sm font-medium">{t.name}</p>
+                  <p class="text-xs" style="color:#a8a09b;">{t.role}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA BANNER -->
+  <section class="py-0 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="border-y py-20 flex flex-col md:flex-row items-center justify-between gap-8" style="border-color:#2e2e2e;">
+        <div>
+          <p class="section-label">¿Listo para el siguiente nivel?</p>
+          <h2 class="font-display text-3xl md:text-4xl text-ivory font-light mt-3" style="font-family:'Cormorant Garamond',serif;">
+            Su organización merece<br/>
+            <span class="text-gold italic">claridad estratégica.</span>
+          </h2>
+        </div>
+        <a href="#contacto" class="btn-primary shrink-0">
+          Agendar diagnóstico gratuito
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="py-32 bg-obsidian">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+
+        <div>
+          <p class="section-label">Contacto</p>
+          <h2 class="section-title mt-4">
+            Inicie la<br/>
+            <span class="text-gold">conversación.</span>
+          </h2>
+          <span class="gold-divider"></span>
+          <p class="text-sm leading-relaxed max-w-sm mb-12" style="color:#a8a09b; font-weight:300;">
+            La primera sesión de diagnóstico es sin costo. En 60 minutos identificamos las oportunidades de mayor impacto para su organización.
+          </p>
+
+          <div class="flex flex-col gap-6">
+            <a href="tel:+51961598048" class="flex gap-4 items-start group">
+              <div class="w-10 h-10 border flex items-center justify-center shrink-0 group-hover:border-gold transition-colors" style="border-color:#2e2e2e;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12.9 19.79 19.79 0 0 1 1.61 4.27 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs mb-1" style="color:#8a6f2e; letter-spacing:0.1em; text-transform:uppercase;">Teléfono</p>
+                <p class="text-ivory text-sm">+51 961 598 048</p>
+              </div>
+            </a>
+
+            <a href="mailto:administracion@strategio.pe" class="flex gap-4 items-start group">
+              <div class="w-10 h-10 border flex items-center justify-center shrink-0 group-hover:border-gold transition-colors" style="border-color:#2e2e2e;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs mb-1" style="color:#8a6f2e; letter-spacing:0.1em; text-transform:uppercase;">Email</p>
+                <p class="text-ivory text-sm">administracion@strategio.pe</p>
+              </div>
+            </a>
+
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 border flex items-center justify-center shrink-0" style="border-color:#2e2e2e;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs mb-1" style="color:#8a6f2e; letter-spacing:0.1em; text-transform:uppercase;">Oficina</p>
+                <p class="text-ivory text-sm">Av. Del Pinar 180, Of. 1201<br/>Chacarilla · Santiago de Surco · Lima</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="bg-charcoal border p-10" style="border-color:#2e2e2e;">
+          <p class="section-label mb-8">Formulario de contacto</p>
+          <form id="contactForm" class="flex flex-col gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="text-xs block mb-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">Nombre</label>
+                <input type="text" name="nombre" required
+                  class="w-full bg-obsidian border px-4 py-3 text-sm focus:outline-none transition-colors"
+                  style="border-color:#2e2e2e; color:#f5f0e8; background:#0a0a0a;"
+                  placeholder="Su nombre" />
+              </div>
+              <div>
+                <label class="text-xs block mb-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">Empresa</label>
+                <input type="text" name="empresa"
+                  class="w-full bg-obsidian border px-4 py-3 text-sm focus:outline-none transition-colors"
+                  style="border-color:#2e2e2e; color:#f5f0e8; background:#0a0a0a;"
+                  placeholder="Nombre de la empresa" />
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs block mb-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">Correo electrónico</label>
+              <input type="email" name="email" required
+                class="w-full border px-4 py-3 text-sm focus:outline-none transition-colors"
+                style="border-color:#2e2e2e; color:#f5f0e8; background:#0a0a0a;"
+                placeholder="correo@empresa.com" />
+            </div>
+
+            <div>
+              <label class="text-xs block mb-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">Servicio de interés</label>
+              <select name="servicio"
+                class="w-full border px-4 py-3 text-sm focus:outline-none appearance-none"
+                style="border-color:#2e2e2e; color:#a8a09b; background:#0a0a0a;">
+                <option value="">Seleccione un servicio</option>
+                <option value="finanzas">Finanzas Corporativas</option>
+                <option value="estrategia">Planeamiento Estratégico</option>
+                <option value="gestion">Modelos de Gestión</option>
+                <option value="due-diligence">Due Diligence</option>
+                <option value="otro">Otro / Consulta general</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-xs block mb-2" style="color:#a8a09b; letter-spacing:0.08em; text-transform:uppercase;">Mensaje</label>
+              <textarea name="mensaje" rows="4"
+                class="w-full border px-4 py-3 text-sm focus:outline-none resize-none"
+                style="border-color:#2e2e2e; color:#f5f0e8; background:#0a0a0a;"
+                placeholder="Cuéntenos brevemente sobre su organización y el desafío que enfrenta..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary self-start">
+              Enviar mensaje
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <p id="formMsg" class="text-xs hidden" style="color:#c9a84c;"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SITUACIONES QUE RESOLVEMOS -->
+  <section class="py-32 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div>
+          <p class="section-label">Situaciones que resolvemos</p>
+          <h2 class="section-title mt-4">
+            ¿Se reconoce en<br/>
+            <span class="text-gold">alguna de estas?</span>
+          </h2>
+        </div>
+        <p class="text-sm leading-relaxed max-w-sm" style="color:#a8a09b; font-weight:300;">
+          Cada organización es única, pero los desafíos estratégicos tienen patrones. Estos son los más comunes que acompañamos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-smoke">
+        {[
+          {
+            icon: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>`,
+            title: 'La empresa que creció rápido y perdió el control',
+            desc: 'Las ventas subieron, pero los márgenes bajaron. Los procesos que funcionaban con 20 personas ya no escalan. Nadie sabe exactamente dónde se va el dinero.',
+            tag: 'Gestión · Finanzas',
+          },
+          {
+            icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+            title: 'El negocio familiar que quiere institucionalizar',
+            desc: 'La segunda generación entra a la empresa. O se busca un gerente externo. O simplemente el fundador quiere que el negocio funcione sin depender de él solo.',
+            tag: 'Gestión · Gobierno',
+          },
+          {
+            icon: `<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>`,
+            title: 'La empresa con caja ajustada a pesar de vender bien',
+            desc: 'Los ingresos existen, pero la liquidez siempre está comprometida. Los plazos de pago se alargan, los proveedores presionan y la deuda de corto plazo se renueva indefinidamente.',
+            tag: 'Finanzas · Tesorería',
+          },
+          {
+            icon: `<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>`,
+            title: 'La organización que planea pero no ejecuta',
+            desc: 'El plan estratégico se presenta en enero con mucho entusiasmo. En junio nadie lo recuerda. Los objetivos se posponen, las prioridades cambian y el equipo pierde el norte.',
+            tag: 'Estrategia · Ejecución',
+          },
+          {
+            icon: `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
+            title: 'El directivo que necesita argumentos financieros sólidos',
+            desc: 'Una adquisición, una inversión importante, una ronda de financiamiento o una presentación ante accionistas. Se necesita un análisis que aguante el escrutinio externo.',
+            tag: 'Finanzas · M&A',
+          },
+          {
+            icon: `<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>`,
+            title: 'La empresa que no sabe qué tan valiosa es',
+            desc: 'Se abre la posibilidad de vender, fusionarse, entrar un socio o acceder a crédito. Nadie tiene claridad sobre el valor real del negocio ni sobre qué lo sostiene o lo erosiona.',
+            tag: 'Finanzas · Valorización',
+          },
+        ].map(sit => (
+          <div class="bg-obsidian p-8 hover-lift group">
+            <div class="w-9 h-9 border flex items-center justify-center mb-5" style="border-color:#8a6f2e;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" set:html={sit.icon}></svg>
+            </div>
+            <h3 class="font-display text-lg text-ivory font-light leading-snug mb-3" style="font-family:'Cormorant Garamond',serif;">{sit.title}</h3>
+            <p class="text-xs leading-relaxed mb-5" style="color:#a8a09b; font-weight:300;">{sit.desc}</p>
+            <span class="text-xs" style="color:#8a6f2e; letter-spacing:0.1em;">{sit.tag}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="#contacto" class="btn-outline">Si se reconoce en alguna, conversemos →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EQUIPO -->
+  <section id="equipo" class="py-32 bg-obsidian">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <p class="section-label">El equipo</p>
+        <h2 class="section-title mt-4">
+          Las personas detrás<br/>
+          <span class="text-gold">de cada encargo.</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-smoke">
+
+        <!-- Miembro 1 — placeholder editable -->
+        <div class="bg-charcoal p-10 hover-lift">
+          <!-- Foto placeholder — reemplazar con <img> cuando estén disponibles -->
+          <div class="w-16 h-16 border mb-6 flex items-center justify-center" style="border-color:#8a6f2e; background:#1e1e1e;">
+            <span class="font-display text-2xl text-gold font-light" style="font-family:'Cormorant Garamond',serif;">D</span>
+          </div>
+          <h3 class="font-display text-xl text-ivory font-light mb-1" style="font-family:'Cormorant Garamond',serif;">Daniel Hurtado</h3>
+          <p class="section-label mb-4" style="font-size:0.6rem;">Fundador &amp; Director</p>
+          <p class="text-xs leading-relaxed mb-6" style="color:#a8a09b; font-weight:300;">
+            Más de 11 años asesorando a empresas medianas en finanzas corporativas, planeamiento estratégico y reestructuración organizacional en el mercado peruano.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {['Finanzas Corporativas', 'M&A', 'Estrategia'].map(tag => (
+              <span class="text-xs px-2 py-1 border" style="border-color:#2e2e2e; color:#8a6f2e;">{tag}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Slot para nuevo miembro -->
+        <div class="bg-charcoal p-10 border-2 border-dashed flex flex-col items-center justify-center text-center" style="border-color:#2e2e2e; min-height:280px;">
+          <div class="w-12 h-12 border flex items-center justify-center mb-4" style="border-color:#2e2e2e;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a6f2e" stroke-width="1.5">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+          <p class="text-xs" style="color:#8a6f2e; letter-spacing:0.1em; text-transform:uppercase;">Próximamente</p>
+          <p class="text-xs mt-2" style="color:#2e2e2e;">Expandiendo el equipo</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- INSIGHTS / BLOG PREVIEW -->
+  <section class="py-32 bg-charcoal">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div>
+          <p class="section-label">Insights Strategio</p>
+          <h2 class="section-title mt-4">
+            Perspectiva de alto nivel<br/>
+            <span class="text-gold">sin jerga innecesaria.</span>
+          </h2>
+        </div>
+        <a href="/blog" class="btn-outline self-start md:self-end shrink-0">
+          Ver todos los artículos →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-smoke">
+        {latestPosts.map((post, i) => (
+          <a href={`/blog/${post.id}`} class={`bg-obsidian p-8 hover-lift group block ${i === 0 ? 'md:col-span-1' : ''}`}>
+            <div class="flex items-center justify-between mb-4">
+              <span class="section-label" style="font-size:0.6rem;">{post.data.category}</span>
+              <span class="text-xs" style="color:#8a6f2e;">{post.data.readTime} min</span>
+            </div>
+            <h3 class="font-display text-xl text-ivory font-light leading-tight mb-3 group-hover:text-gold transition-colors" style="font-family:'Cormorant Garamond',serif;">
+              {post.data.title}
+            </h3>
+            <p class="text-xs leading-relaxed mb-6" style="color:#a8a09b; font-weight:300; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
+              {post.data.description}
+            </p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs" style="color:#8a6f2e;">{formatDate(post.data.date)}</span>
+              <span class="text-gold text-sm group-hover:translate-x-1 transition-transform inline-block">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NEWSLETTER -->
+  <div class="max-w-7xl mx-auto px-8 py-0 pb-20">
+    <NewsletterCTA variant="full" />
+  </div>
+
+
+  <Footer />
+</Layout>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const msg = document.getElementById('formMsg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+    setTimeout(() => {
+      msg.textContent = '✓ Mensaje recibido. Le contactaremos en menos de 24 horas.';
+      msg.classList.remove('hidden');
+      form.reset();
+      btn.textContent = 'Enviar mensaje';
+      btn.disabled = false;
+    }, 1200);
+  });
+</script>
