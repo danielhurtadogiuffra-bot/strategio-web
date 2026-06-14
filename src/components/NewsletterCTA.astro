@@ -5,78 +5,97 @@ interface Props {
 const { variant = 'full' } = Astro.props;
 ---
 
-{variant === 'full' ? (
-  <div class="py-16 px-8 md:px-16 text-center relative overflow-hidden" style="background:#1E1B26; border:1px solid #2A2740;">
-    <div class="absolute inset-0 opacity-[0.03]" style="
-      background-image: linear-gradient(#4D0FC1 1px, transparent 1px),
-                        linear-gradient(90deg, #4D0FC1 1px, transparent 1px);
-      background-size: 60px 60px;
-    "></div>
-    <div class="relative max-w-xl mx-auto">
-      <p class="section-label mb-4">Insights Strategio</p>
-      <h3 class="text-3xl font-black text-offwhite mb-4" style="font-family:'Archivo',sans-serif; color:#F8F8FF;">
-        Análisis estratégico directo<br/>
-        <span style="color:#4D0FC1;">a su bandeja de entrada.</span>
-      </h3>
-      <p class="text-sm leading-relaxed mb-8" style="color:#9B97AA; font-weight:300;">
-        Un artículo mensual. Sin spam. Solo perspectiva de alto nivel sobre finanzas, estrategia y gestión empresarial en el contexto peruano.
-      </p>
-      <form id="newsletterForm" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="correo@empresa.com"
-          class="flex-1 px-4 py-3 text-sm focus:outline-none"
-          style="border:1px solid #2A2740; color:#F8F8FF; background:#0A0A19; font-family:'Archivo',sans-serif;"
-        />
-        <button type="submit" class="btn-primary whitespace-nowrap">
-          Suscribirme
-        </button>
-      </form>
-      <p id="nlMsg" class="text-xs mt-4 hidden" style="color:#4D0FC1;"></p>
-      <p class="text-xs mt-3" style="color:#9B97AA;">Sin spam · Baja cuando quieras</p>
-    </div>
-  </div>
-) : (
-  <div class="py-2 my-10 pl-6" style="border-left:3px solid #4D0FC1;">
-    <p class="text-sm font-semibold mb-1" style="color:#F8F8FF;">¿Le resultó útil este análisis?</p>
-    <p class="text-xs mb-4" style="color:#9B97AA;">Reciba un artículo mensual como este directamente en su correo.</p>
-    <form id="newsletterFormInline" class="flex gap-3">
+<div class={`news-cta ${variant === 'inline' ? 'news-cta-inline' : ''}`}>
+  <div class="news-cta-inner">
+    <span class="badge-white"><span class="badge-white-dot"></span>Newsletter</span>
+    <h3 class="news-cta-title">
+      Ideas claras sobre <span class="news-accent">orden y crecimiento</span>.
+    </h3>
+    <p class="news-cta-desc">
+      Análisis de alto nivel sobre finanzas, estrategia y gestión. Sin ruido, directo a tu bandeja.
+    </p>
+    <form class="news-form" id="newsForm">
       <input
         type="email"
         name="email"
+        class="news-input"
+        placeholder="tu@correo.com"
         required
-        placeholder="correo@empresa.com"
-        class="flex-1 px-3 py-2 text-xs focus:outline-none"
-        style="border:1px solid #2A2740; color:#F8F8FF; background:#0A0A19; max-width:240px; font-family:'Archivo',sans-serif;"
       />
-      <button type="submit" class="btn-primary text-xs px-4 py-2">
-        Suscribir
-      </button>
+      <button type="submit" class="btn-primary news-btn">Suscribirme →</button>
     </form>
-    <p id="nlMsgInline" class="text-xs mt-2 hidden" style="color:#4D0FC1;"></p>
+    <p class="news-note" id="newsMsg"></p>
   </div>
-)}
+</div>
+
+<style>
+  .news-cta {
+    background: rgba(107, 53, 232, 0.07);
+    border: 1px solid rgba(107, 53, 232, 0.2);
+    border-radius: 24px;
+    padding: 48px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--purple-light), transparent);
+  }
+  .news-cta-inline { padding: 36px 32px; border-radius: 16px; }
+  .news-cta-inner { max-width: 540px; }
+  .news-cta-title {
+    font-family: "Archivo", sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin: 18px 0 12px;
+  }
+  .news-accent { color: var(--purple-light); }
+  .news-cta-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 24px;
+  }
+  .news-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .news-input {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--white);
+    padding: 14px 20px;
+    font-family: "Archivo", sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s;
+  }
+  .news-input::placeholder { color: rgba(255, 255, 255, 0.25); }
+  .news-input:focus { outline: none; border-color: var(--purple); }
+  .news-btn { padding: 14px 26px; }
+  .news-note {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 14px;
+    color: var(--purple-light);
+    min-height: 18px;
+  }
+</style>
 
 <script>
-  ['newsletterForm', 'newsletterFormInline'].forEach(id => {
-    const form = document.getElementById(id) as HTMLFormElement;
-    if (!form) return;
-    const msgId = id === 'newsletterForm' ? 'nlMsg' : 'nlMsgInline';
-    const msg = document.getElementById(msgId);
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button') as HTMLButtonElement;
-      btn.disabled = true;
-      btn.textContent = '...';
-      setTimeout(() => {
-        msg.textContent = '✓ Suscripción confirmada. Bienvenido.';
-        msg.classList.remove('hidden');
-        form.reset();
-        btn.disabled = false;
-        btn.textContent = id === 'newsletterForm' ? 'Suscribirme' : 'Suscribir';
-      }, 900);
-    });
+  const form = document.getElementById('newsForm') as HTMLFormElement | null;
+  const msg = document.getElementById('newsMsg');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (msg) msg.textContent = 'Gracias. Te escribiremos pronto.';
+    form.reset();
   });
 </script>

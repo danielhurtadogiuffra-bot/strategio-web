@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
 interface Props { title?: string; description?: string; }
-const { title = 'Strategio — Consultoría Estratégica', description = 'Asesoramos a organizaciones que buscan claridad, estructura y dirección. Finanzas corporativas, planeamiento estratégico y modelos de gestión.' } = Astro.props;
+const {
+  title = 'Strategio — Consultoría Estratégica y Optimización de Negocios',
+  description = 'Asesoramos a organizaciones que buscan claridad, estructura y dirección. Finanzas corporativas, planeamiento estratégico y modelos de gestión.',
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -14,139 +17,37 @@ const { title = 'Strategio — Consultoría Estratégica', description = 'Asesor
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://strategio.pe" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,600;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;700;900&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet"
+  />
   <title>{title}</title>
-  <style>
-    @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    @keyframes slideRight { from { width:0; } to { width:3rem; } }
-    .anim-up { animation: fadeInUp 0.7s ease both; }
-    .anim-fade { animation: fadeIn 1s ease both; }
-    .anim-line { animation: slideRight 0.8s ease both; }
-    .animate-fade-in-up { animation: fadeInUp 0.7s ease both; }
-    .animate-fade-in { animation: fadeIn 1s ease both; }
-    .d-100 { animation-delay: 0.1s; }
-    .d-200 { animation-delay: 0.2s; }
-    .d-300 { animation-delay: 0.3s; }
-    .d-500 { animation-delay: 0.5s; }
-    .d-700 { animation-delay: 0.7s; }
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-    .delay-500 { animation-delay: 0.5s; }
-    .delay-700 { animation-delay: 0.7s; }
-
-    .purple-line {
-      display: block; width: 3rem; height: 3px;
-      background: #4D0FC1; margin: 1.5rem 0;
-    }
-
-    /* Legacy alias used in some pages */
-    .gold-divider {
-      display: block; width: 3rem; height: 3px;
-      background: #4D0FC1; margin: 1.5rem 0;
-    }
-
-    .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(77,15,193,0.15); }
-
-    .nav-link {
-      position: relative; letter-spacing: 0.08em; font-size: 0.75rem;
-      font-weight: 600; text-transform: uppercase; color: #9B97AA;
-      transition: color 0.3s ease;
-    }
-    .nav-link::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 2px; background: #4D0FC1; transition: width 0.3s ease;
-    }
-    .nav-link:hover { color: #F8F8FF; }
-    .nav-link:hover::after { width: 100%; }
-
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.75rem; background: #4D0FC1; color: #F8F8FF;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; transition: background 0.3s ease, transform 0.2s ease;
-      font-family: "Archivo", sans-serif;
-    }
-    .btn-primary:hover { background: #6B2FE0; transform: translateX(2px); }
-
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.75rem; border: 2px solid #4D0FC1; color: #4D0FC1;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; transition: all 0.3s ease;
-      font-family: "Archivo", sans-serif;
-    }
-    .btn-outline:hover { background: #4D0FC1; color: #F8F8FF; }
-
-    .btn-outline-white {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.8rem 1.75rem; border: 2px solid rgba(248,248,255,0.3); color: #F8F8FF;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; transition: all 0.3s ease;
-    }
-    .btn-outline-white:hover { border-color: #F8F8FF; }
-
-    .section-tag {
-      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: #FF985C; font-weight: 700;
-    }
-
-    /* Legacy alias */
-    .section-label {
-      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: #FF985C; font-weight: 700;
-    }
-
-    .hero-title {
-      font-family: "Archivo", sans-serif; font-size: clamp(3rem, 7vw, 6.5rem);
-      font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; color: #F8F8FF;
-    }
-
-    .section-title {
-      font-family: "Archivo", sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 900; line-height: 1.05; color: #F8F8FF; letter-spacing: -0.01em;
-    }
-
-    .card-stat { font-family: "Archivo", sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: #4D0FC1; line-height: 1; }
-
-    /* Legacy alias for stat-number */
-    .stat-number { font-family: "Archivo", sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: #4D0FC1; line-height: 1; }
-
-    .card-service {
-      border: 1px solid #2A2740; background: #1E1B26; padding: 2.5rem;
-      position: relative; overflow: hidden; transition: border-color 0.3s ease;
-    }
-    .card-service::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 3px; height: 0; background: #4D0FC1; transition: height 0.4s ease;
-    }
-    .card-service:hover { border-color: #4D0FC1; }
-    .card-service:hover::before { height: 100%; }
-
-    .testimonial-card {
-      border-left: 3px solid #4D0FC1; padding: 2rem 2rem 2rem 2.5rem;
-      background: #1E1B26;
-    }
-
-    .num-accent {
-      font-family: "Archivo", sans-serif; font-size: 6rem; font-weight: 900;
-      color: #2A2740; line-height: 1; position: absolute; top: -0.5rem; right: 1rem;
-      pointer-events: none; letter-spacing: -0.05em;
-    }
-
-    /* Legacy alias */
-    .number-accent {
-      font-family: "Archivo", sans-serif; font-size: 6rem; font-weight: 900;
-      color: #2A2740; line-height: 1; position: absolute; top: -0.5rem; right: 1rem;
-      pointer-events: none; letter-spacing: -0.05em;
-    }
-  </style>
 </head>
 <body>
   <slot />
+
+  <script>
+    // Global scroll-reveal intersection observer
+    const reveal = () => {
+      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+      els.forEach((el) => obs.observe(el));
+    };
+    if (document.readyState !== 'loading') reveal();
+    else document.addEventListener('DOMContentLoaded', reveal);
+  </script>
 </body>
 </html>
